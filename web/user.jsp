@@ -12,8 +12,11 @@
 <%@page import="main.*"%>
 <%@page import="entity.*"%>
 <%@page import="dao.*"%>
-`<%@ page import ="java.sql.*" %>
-
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.SQLException"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +27,8 @@
     </head>
     <body>
         <%
+            Class.forName("com.mysql.jdbc.Driver");
+            AbstractDao dao = new AbstractDao();
             AbstractUserDao abstractUser = Context.instanceUserDao();
             User user = null;
             String name = "";
@@ -31,6 +36,7 @@
             try {
                 user = abstractUser.getById(1);
             } catch (Exception e) {
+                
             }
                 name = user.getName();
                 surname = user.getSurname();

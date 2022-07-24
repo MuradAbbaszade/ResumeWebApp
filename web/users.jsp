@@ -21,9 +21,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
+        <%      Class.forName("com.mysql.jdbc.Driver");
                 AbstractUserDao abstractUser = Context.instanceUserDao();
-                List<User> userList = abstractUser.getAll();
+                String name = request.getParameter("name");
+                String surname = request.getParameter("surname");
+                List<User> userList = abstractUser.getByNameAndSurname(name, surname);
         %>
         <div>        
             <form method="GET" action="users.jsp">
