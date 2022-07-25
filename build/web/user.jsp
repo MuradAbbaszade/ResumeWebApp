@@ -43,7 +43,7 @@
         %>
         <div>        
             <form method="POST" action="UserController">
-                <input type="hidden" name="id" value="<=user.getId()%>"/>
+                <input type="hidden" name="id" value="<%=user.getId()%>"/>
                 <label for="name">Name:</label>
                 <input type="text" name="name" value="<%=name%>"/>
                 <label for="surname">Surname:</label>
