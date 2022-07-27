@@ -4,6 +4,7 @@
     Author     : roma-cervice
 --%>
 
+<%@page import="java.lang.Exception"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.User"%>
@@ -28,51 +29,68 @@
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <%      Class.forName("com.mysql.jdbc.Driver");
+        <%
+            Class.forName("com.mysql.jdbc.Driver");
+            List<User> userList = new ArrayList<User>();
             AbstractUserDao abstractUser = Context.instanceUserDao();
-            String name = request.getParameter("name");
-            String surname = request.getParameter("surname");
-            List<User> userList = abstractUser.getByNameAndSurname(name, surname);
+                Class.forName("com.mysql.jdbc.Driver");
+                String name = request.getParameter("name");
+                String surname = request.getParameter("surname");
+                userList = abstractUser.getByNameAndSurname(name, surname);
+            if (request.getParameter("delete") != null && request.getParameter("delete").equals("Delete")) {
+                int i = Integer.valueOf(request.getParameter("id"));
+                abstractUser.removeUser(i);
+                response.sendRedirect("users.jsp");
+            }
+            if (request.getParameter("edit") != null && request.getParameter("edit").equals("Edit")) {
+                request.getRequestDispatcher("userDetails.jsp").forward(request, response);
+            }
         %>
         <div class="search">        
             <form method="GET" action="users.jsp">
                 <input class="input" type="text" name="name" value="" placeholder="Name">
                 <input class="input" type="text" name="surname" value="" placeholder="Surname">
-                <button class="operations_button" type="submit" name="search" value="Search">
+                <button title="Search" class="operations_button" type="submit" name="search" value="Search">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
         </div>
 
 
-        <div class="div_table">
-            <table class="table">
-                <thead class="thead-dark">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Nationality</th>
-                <th>Operations</th>
-                </thead>
-                <tbody>
-                    <%for (User u : userList) {%>
-                    <tr>
-                        <td><%=u.getId()%></td>
-                        <td><%=u.getName()%></td>
-                        <td><%=u.getSurname()%></td>
-                        <td><%=u.getNationality()%></td>
-                        <td>
-                            <button class="operations_button">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="operations_button">
-                               <i class="far fa-trash-alt"></i>                     
-                            </button>
-                        </td>
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
+
+        <div class="container">
+            <div class="div_table">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Nationality</th>
+                    <th>Operations</th>
+                    </thead>
+                    <tbody>
+                        <%for (User u : userList) {%>
+                        <tr>
+                            <td><%=u.getId()%></td>
+                            <td><%=u.getName()%></td>
+                            <td><%=u.getSurname()%></td>
+                            <td><%=u.getNationality()%></td>
+                            <td>
+                                <form method="GET" action="users.jsp">
+                                    <input type="hidden" name="id" value="<%=u.getId()%>" placeholder="Name"/>
+                                    <button type="submit" name="edit" title= "Edit" value="Edit" class="operations_button">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="delete" name="delete" value="Delete" title= "Delete" class="operations_button">
+                                        <i class="far fa-trash-alt"></i>                     
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
