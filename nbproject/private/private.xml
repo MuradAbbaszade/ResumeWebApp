@@ -14,9 +14,12 @@
         <group>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/userDetails.jsp</file>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/assets/users.js</file>
+            <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/login.jsp</file>
+            <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/error.jsp</file>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/src/java/main/UserDetailsController.java</file>
+            <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/src/java/filter/SecurityFilter.java</file>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/users.jsp</file>
-            <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/assets/users.css</file>
+            <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/src/java/main/LoginController.java</file>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/src/java/main/ErrorController.java</file>
             <file>file:/C:/Users/roma-cervice/Documents/NetBeansProjects/ResumeWebApp/web/index.html</file>
         </group>
